@@ -56,7 +56,7 @@ void Task1_Entry(void const * argument)
   osDelay(1);
   for(;;)
   {
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+    GPIOC->ODR &= ~GPIO_ODR_ODR13;
     osDelay(3000);
   }
   /* USER CODE END 5 */
