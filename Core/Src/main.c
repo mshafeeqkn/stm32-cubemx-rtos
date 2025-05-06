@@ -73,33 +73,3 @@ void Task2_Entry(void const * argument)
   }
   /* USER CODE END Task2_Entry */
 }
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM1) {
-    HAL_IncTick();
-  }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
-}
-
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
-}
-
-#ifdef  USE_FULL_ASSERT
-void assert_failed(uint8_t *file, uint32_t line)
-{
-}
-#endif /* USE_FULL_ASSERT */
