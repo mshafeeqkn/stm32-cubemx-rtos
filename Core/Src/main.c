@@ -17,18 +17,17 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include "FreeRTOS.h"
+#include "task.h"
 #include "main.h"
-#include "cmsis_os.h"
-
-osThreadId Task1Handle;
-osThreadId Task2Handle;
+#include <stddef.h>
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void Task1_Entry(void const * argument);
-void Task2_Entry(void const * argument);
+void Task1_Entry(void* argument);
+void Task2_Entry(void* argument);
 
 int main(void)
 {
@@ -36,40 +35,36 @@ int main(void)
     GPIOC->CRH &= ~(GPIO_CRH_MODE13 | GPIO_CRH_CNF13);      // Clear MODE13, CNF13
     GPIOC->CRH |=  GPIO_CRH_MODE13_1;                       // Output mode 2 MHz
 
-    osThreadDef(Task2, Task2_Entry, osPriorityNormal, 0, 128);
-    Task2Handle = osThreadCreate(osThread(Task2), NULL);
-
-    osThreadDef(Task1, Task1_Entry, osPriorityNormal, 0, 128);
-    Task1Handle = osThreadCreate(osThread(Task1), NULL);
-
-    osKernelStart();
+    xTaskCreate(Task2_Entry, "LEDOFF", 128, NULL, 1, NULL);
+    xTaskCreate(Task1_Entry, "LEDON", 128, NULL, 1, NULL);
+    vTaskStartScheduler();
 
     while (1)
     {
     }
 }
 
-void Task1_Entry(void const * argument)
+void Task1_Entry(void* argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-  osDelay(1);
+  vTaskDelay(pdMS_TO_TICKS(1));
   for(;;)
   {
     GPIOC->ODR &= ~GPIO_ODR_ODR13;
-    osDelay(3000);
+    vTaskDelay(pdMS_TO_TICKS(3000));
   }
   /* USER CODE END 5 */
 }
 
-void Task2_Entry(void const * argument)
+void Task2_Entry(void* argument)
 {
   /* USER CODE BEGIN Task2_Entry */
   /* Infinite loop */
   for(;;)
   {
     GPIOC->ODR |= GPIO_ODR_ODR13;
-    osDelay(50);
+    vTaskDelay(pdMS_TO_TICKS(50));
   }
   /* USER CODE END Task2_Entry */
 }

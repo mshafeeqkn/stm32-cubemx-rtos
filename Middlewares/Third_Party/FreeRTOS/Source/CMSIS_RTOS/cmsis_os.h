@@ -405,12 +405,6 @@ uint32_t osKernelSysTick (void);
 /// \param         stacksz      stack size (in bytes) requirements for the thread function.
 /// \note CAN BE CHANGED: The parameters to \b osThreadDef shall be consistent but the
 ///       macro body is implementation specific in every CMSIS-RTOS.
-#if defined (osObjectsExternal)  // object is external
-#define osThreadDef(name, thread, priority, instances, stacksz)  \
-extern const osThreadDef_t os_thread_def_##name
-#else                            // define the object
-
-#if( configSUPPORT_STATIC_ALLOCATION == 1 )
 #define osThreadDef(name, thread, priority, instances, stacksz)  \
 const osThreadDef_t os_thread_def_##name = \
 { #name, (thread), (priority), (instances), (stacksz), NULL, NULL }
@@ -418,13 +412,6 @@ const osThreadDef_t os_thread_def_##name = \
 #define osThreadStaticDef(name, thread, priority, instances, stacksz, buffer, control)  \
 const osThreadDef_t os_thread_def_##name = \
 { #name, (thread), (priority), (instances), (stacksz), (buffer), (control) }
-#else //configSUPPORT_STATIC_ALLOCATION == 0
-
-#define osThreadDef(name, thread, priority, instances, stacksz)  \
-const osThreadDef_t os_thread_def_##name = \
-{ #name, (thread), (priority), (instances), (stacksz)}
-#endif
-#endif
 
 /// Access a Thread definition.
 /// \param         name          name of the thread definition object.
