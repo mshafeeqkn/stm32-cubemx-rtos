@@ -8,10 +8,6 @@
   *          is using in the C source code, usually in main.c. This file contains:
   *            - Configuration section that allows to select:
   *              - The STM32F1xx device used in the target application
-  *              - To use or not the peripheral's drivers in application code(i.e. 
-  *                code will be based on direct access to peripheral's registers 
-  *                rather than drivers API), this option is controlled by 
-  *                "#define USE_HAL_DRIVER"
   *  
   ******************************************************************************
   * @attention
@@ -74,19 +70,6 @@
   /* #define STM32F105xC */    /*!< STM32F105R8, STM32F105V8, STM32F105RB, STM32F105VB, STM32F105RC and STM32F105VC */
   /* #define STM32F107xC  */   /*!< STM32F107RB, STM32F107VB, STM32F107RC and STM32F107VC */  
 #endif
-
-/*  Tip: To avoid modifying this file each time you need to switch between these
-        devices, you can define the device in your toolchain compiler preprocessor.
-  */
-  
-#if !defined  (USE_HAL_DRIVER)
-/**
- * @brief Comment the line below if you will not use the peripherals drivers.
-   In this case, these drivers will not be included and the application code will 
-   be based on direct access to peripherals registers 
-   */
-  /*#define USE_HAL_DRIVER */
-#endif /* USE_HAL_DRIVER */
 
 /**
   * @brief CMSIS Device version number
@@ -244,16 +227,6 @@ typedef enum
       val = (__LDREXH((__IO uint16_t *)&(REG)) & ~(CLEARMSK)) | (SETMASK); \
     } while ((__STREXH(val,(__IO uint16_t *)&(REG))) != 0U);               \
   } while(0)
-
-
-/**
-  * @}
-  */
-
-#if defined (USE_HAL_DRIVER)
- #include "stm32f1xx_hal.h"
-#endif /* USE_HAL_DRIVER */
-
 
 #ifdef __cplusplus
 }
