@@ -40,15 +40,15 @@ Core/Src/main.c \
 Core/Src/freertos.c \
 Core/Src/stm32f1xx_it.c \
 Core/Src/system_stm32f1xx.c \
-Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
-Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
-Middlewares/Third_Party/FreeRTOS/Source/list.c \
-Middlewares/Third_Party/FreeRTOS/Source/queue.c \
-Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c \
-Middlewares/Third_Party/FreeRTOS/Source/tasks.c \
-Middlewares/Third_Party/FreeRTOS/Source/timers.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c \
+FreeRTOS/Source/croutine.c \
+FreeRTOS/Source/event_groups.c \
+FreeRTOS/Source/list.c \
+FreeRTOS/Source/queue.c \
+FreeRTOS/Source/stream_buffer.c \
+FreeRTOS/Source/tasks.c \
+FreeRTOS/Source/timers.c \
+FreeRTOS/Source/portable/MemMang/heap_4.c \
+FreeRTOS/Source/portable/GCC/ARM_CM3/port.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c
 
@@ -111,8 +111,8 @@ AS_INCLUDES =  \
 # C includes
 C_INCLUDES =  \
 -ICore/Inc \
--IMiddlewares/Third_Party/FreeRTOS/Source/include \
--IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 \
+-IFreeRTOS/Source/include \
+-IFreeRTOS/Source/portable/GCC/ARM_CM3 \
 
 
 # compile gcc flags
