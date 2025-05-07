@@ -40,17 +40,13 @@ Core/Src/main.c \
 Core/Src/freertos.c \
 Core/Src/stm32f1xx_it.c \
 Core/Src/system_stm32f1xx.c \
-FreeRTOS/Source/croutine.c \
-FreeRTOS/Source/event_groups.c \
-FreeRTOS/Source/list.c \
-FreeRTOS/Source/queue.c \
-FreeRTOS/Source/stream_buffer.c \
-FreeRTOS/Source/tasks.c \
-FreeRTOS/Source/timers.c \
-FreeRTOS/Source/portable/MemMang/heap_4.c \
-FreeRTOS/Source/portable/GCC/ARM_CM3/port.c \
 Core/Src/sysmem.c \
-Core/Src/syscalls.c
+Core/Src/syscalls.c \
+FreeRTOS/Source/tasks.c \
+FreeRTOS/Source/queue.c \
+FreeRTOS/Source/list.c \
+FreeRTOS/Source/portable/MemMang/heap_4.c \
+FreeRTOS/Source/portable/GCC/ARM_CM3/port.c
 
 # ASM sources
 ASM_SOURCES =  \
